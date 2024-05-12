@@ -21,6 +21,12 @@ export default function App() {
 		})
 	}
 
+	const deleteHandler = key => {
+		setListOfItems(list => {
+			return list.filter(listOfItems => listOfItems.key != key)
+		})
+	}
+
 	return (
 		<View>
 			<Header />
@@ -28,11 +34,11 @@ export default function App() {
 			<View>
 				<FlatList
 					data={listOfItems}
-					renderItem={({ item }) => <ListItem el={item} />}
+					renderItem={({ item }) => (
+						<ListItem el={item} deleteHandler={deleteHandler} />
+					)}
 				/>
 			</View>
 		</View>
 	)
 }
-
-const styles = StyleSheet.create({})
