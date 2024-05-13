@@ -1,10 +1,19 @@
 import { useState } from 'react'
-import { Button, StyleSheet, TextInput, View } from 'react-native'
+import { Button, StyleSheet, TextInput, View,Alert } from 'react-native'
 
 export default function Form({ addHandler }) {
 	const [text, setText] = useState('')
-	const onChange = text => {
-		setText(text)
+	const onChange = textInput => {
+		setText(textInput)
+	}
+
+	const pressButton = () => {
+		if (text) {
+			addHandler(text)
+			setText('')
+		} else {
+			Alert.alert('Ошибка ввода','Впишите задачу')
+		}
 	}
 
 	return (
@@ -13,12 +22,9 @@ export default function Form({ addHandler }) {
 				style={styles.input}
 				onChangeText={onChange}
 				placeholder='Впишите задачу ...'
+				value={text}
 			/>
-			<Button
-				color='green'
-				onPress={() => addHandler(text)}
-				title='Добавить задачу'
-			/>
+			<Button color='green' onPress={pressButton} title='Добавить задачу' />
 		</View>
 	)
 }

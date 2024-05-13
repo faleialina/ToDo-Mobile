@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FlatList, View } from 'react-native'
+import { FlatList, ScrollView, View } from 'react-native'
 import Form from './components/Form'
 import Header from './components/Header'
 import ListItem from './components/ListItem'
@@ -31,14 +31,14 @@ export default function App() {
 		<View>
 			<Header />
 			<Form addHandler={addHandler} />
-			<View>
+			<ScrollView>
 				<FlatList
 					data={listOfItems}
 					renderItem={({ item }) => (
 						<ListItem el={item} deleteHandler={deleteHandler} />
 					)}
 				/>
-			</View>
+			</ScrollView>
 		</View>
 	)
 }
